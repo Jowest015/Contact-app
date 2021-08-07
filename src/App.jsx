@@ -1,26 +1,30 @@
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { Provider } from 'react-redux';
 
 
 import ContactList from './contactpg';
 import AddContact from './add-contact';
+import store from './store';
+
 
 
 function App() {
   return (
-    <BrowserRouter>
-    
-      <div className="App">
-        <header>
-          <h1><Link to="/">Contact List</Link></h1>
-        </header>
-        <Switch>
-          <Route exact path='/' component={ContactList} />
-          <Route path="/add" component={AddContact} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="App">
+          <header>
+            <h1><Link to="/">Contact List</Link></h1>
+          </header>
+          <Switch>
+            <Route exact path='/' component={ContactList} />
+            <Route path="/add" component={AddContact} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
