@@ -4,9 +4,8 @@ import { Provider } from 'react-redux';
 
 
 import ContactList from './contactpg';
-import AddContact from './add-contact';
+import AddContactForm from './add-contact';
 import store from './store';
-
 
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
           </header>
           <Switch>
             <Route exact path='/' component={ContactList} />
-            <Route path="/add" component={AddContact} />
+            <Route path="/add" component={AddContactForm} />
             <Route component={NoMatch} />
           </Switch>
         </div>

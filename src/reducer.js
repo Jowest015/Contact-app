@@ -8,8 +8,11 @@ function clist_red (state, action) {
   if (state === undefined) {
     return initialState;
   }
-
+  console.log(action);
+  
   return state;
-};
+}
+
+
 
 export default clist_red;
