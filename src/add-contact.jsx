@@ -47,6 +47,10 @@ class AddContactForm extends (react.Component) {
     event.preventDefault();
   }
 
+  go_back(_event) {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <form onSubmit={(e) => this.handleInputChange(e) }>
@@ -56,7 +60,7 @@ class AddContactForm extends (react.Component) {
             name="name"
             type="text"
             value={this.state.name}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -65,7 +69,7 @@ class AddContactForm extends (react.Component) {
             name="email"
             type="text"
             value={this.state.email}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -74,7 +78,7 @@ class AddContactForm extends (react.Component) {
             name="phone"
             type="text"
             value={this.state.phone}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -83,7 +87,7 @@ class AddContactForm extends (react.Component) {
             name="address"
             type="text"
             value={this.state.address}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -92,7 +96,7 @@ class AddContactForm extends (react.Component) {
             name="city"
             type="text"
             value={this.state.city}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -101,7 +105,7 @@ class AddContactForm extends (react.Component) {
             name="state"
             type="text"
             value={this.state.state}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
         <br />
         <label>
@@ -110,9 +114,10 @@ class AddContactForm extends (react.Component) {
             name="zipcode"
             type="text"
             value={this.state.zipcode}
-            onChange={this.handleInputChange} />
+            onChange={(e) => this.handleInputChange(e)} />
         </label>
-        <input type="submit" />
+        <button type="submit" onClick={(e) => this.handleSubmit(e)}>Add Contact</button>
+        <button type="button" onClick={(e) => this.go_back(e)}>Go Back</button>
       </form>
     );
   }

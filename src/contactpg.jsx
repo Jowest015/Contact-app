@@ -2,6 +2,12 @@ import react from 'react';
 import { connect } from 'react-redux';
 
 class ContactList extends (react.Component) {
+  
+  addContact(event) {
+    this.props.history.push('/add')
+
+  }
+
   render() {
     return (
       <div>
@@ -14,13 +20,14 @@ class ContactList extends (react.Component) {
             {contact.city},
             {contact.zipcode}
           </li>
-
           )}
+          <button type="button" onClick={(e) => this.addContact(e)}>Add Contact</button>
         </ul>
       </div>
     )
   }
 }
+
 
 function mapStateToProps (state) {
   return {contact_list: state.contact_list};
