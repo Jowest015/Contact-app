@@ -10,32 +10,29 @@ class AddContactForm extends (react.Component) {
       name: '',
       email: '',
       phone: '',
-      address: '',
       city: '',
       state: '',
       zipcode: ''
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(event) {
+  handleUpdate(event) {
     const target = event.target;
     const value = target.value;
-    const name = target.name;
+    const cname = target.cname;
     const email = target.email;
     const phone = target.phone;
-    const address = target.address;
     const city= target.city;
     const state= target.state;
     const zipcode= target.zipcode;
 
     this.setState({
-      [name]: value,
+      [cname]: value,
       [email]: value,
       [phone]: value,
-      [address]: value,
       [city]: value,
       [state]: value,
       [zipcode]: value
@@ -43,8 +40,14 @@ class AddContactForm extends (react.Component) {
   }
 
   handleSubmit(event) {
-    alert('New contact was submitted: ' + this.state.value);
+    if (!this.state.cname && this.state.email && this.state.phone && this.state.city && this.state.state && this.state.zipcode) {
+      alert('Error');
+    } else {
+      this.props.addContact({cname: this.state.cname, email: this.state.email, phone: this.state.phone, city: this.state.city, state: this.state.state, zipcode: this.state.zipcode});
+      this.setState();
+    alert('New contact was submitted: ');
     event.preventDefault();
+    }
   }
 
   go_back(_event) {
@@ -53,14 +56,14 @@ class AddContactForm extends (react.Component) {
 
   render() {
     return (
-      <form onSubmit={(e) => this.handleInputChange(e) }>
+      <form onSubmit={(e) => this.handleSubmit(e) }>
         <label>
           Name:
           <input
-            name="name"
+            name="cname"
             type="text"
-            value={this.state.name}
-            onChange={(e) => this.handleInputChange(e)} />
+            value={this.state.cname}
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
         <br />
         <label>
@@ -69,7 +72,7 @@ class AddContactForm extends (react.Component) {
             name="email"
             type="text"
             value={this.state.email}
-            onChange={(e) => this.handleInputChange(e)} />
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
         <br />
         <label>
@@ -78,16 +81,7 @@ class AddContactForm extends (react.Component) {
             name="phone"
             type="text"
             value={this.state.phone}
-            onChange={(e) => this.handleInputChange(e)} />
-        </label>
-        <br />
-        <label>
-          Address:
-          <input
-            name="address"
-            type="text"
-            value={this.state.address}
-            onChange={(e) => this.handleInputChange(e)} />
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
         <br />
         <label>
@@ -96,7 +90,7 @@ class AddContactForm extends (react.Component) {
             name="city"
             type="text"
             value={this.state.city}
-            onChange={(e) => this.handleInputChange(e)} />
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
         <br />
         <label>
@@ -105,7 +99,7 @@ class AddContactForm extends (react.Component) {
             name="state"
             type="text"
             value={this.state.state}
-            onChange={(e) => this.handleInputChange(e)} />
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
         <br />
         <label>
@@ -114,9 +108,9 @@ class AddContactForm extends (react.Component) {
             name="zipcode"
             type="text"
             value={this.state.zipcode}
-            onChange={(e) => this.handleInputChange(e)} />
+            onChange={(e) => this.handleUpdate(e)} />
         </label>
-        <button type="submit" onClick={(e) => this.handleSubmit(e)}>Add Contact</button>
+        <button type="submit" value="Submit">Add Contact</button>
         <button type="button" onClick={(e) => this.go_back(e)}>Go Back</button>
       </form>
     );
