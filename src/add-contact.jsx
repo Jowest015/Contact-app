@@ -1,4 +1,7 @@
 import react from "react";
+import { connect } from "react-redux";
+
+import {addContact} from './actions';
 
 class AddContactForm extends (react.Component) {
   constructor(props) {
@@ -46,7 +49,7 @@ class AddContactForm extends (react.Component) {
 
   render() {
     return (
-      <form>
+      <form onSubmit={(e) => this.handleInputChange(e) }>
         <label>
           Name:
           <input
@@ -109,10 +112,25 @@ class AddContactForm extends (react.Component) {
             value={this.state.zipcode}
             onChange={this.handleInputChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" />
       </form>
     );
   }
 }
 
-export default AddContactForm;
+
+function mapStateToProps (state) {
+  return {};
+}
+
+function mapDispatchToProps (dispatch) {
+  return{
+    addContact: function (data) {
+      dispatch(addContact(data))
+    }
+  }
+}
+
+var ConnectedContacts = connect(mapStateToProps, mapDispatchToProps)(AddContactForm)
+
+export default ConnectedContacts;

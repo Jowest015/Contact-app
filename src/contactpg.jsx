@@ -6,20 +6,30 @@ class ContactList extends (react.Component) {
     return (
       <div>
         <ul>
-          {this.props.contact_list.map((contact, index) => {
-            return <li key= {index}>{contact.name}</li>
+          {this.props.contact_list.map((contact, index) => 
+          <li key= {index}>
+            {contact.name},
+            {contact.email},
+            {contact.state},
+            {contact.city},
+            {contact.zipcode}
+          </li>
 
-          })}
+          )}
         </ul>
       </div>
     )
   }
 }
 
-function MapStateToProps (state) {
+function mapStateToProps (state) {
   return {contact_list: state.contact_list};
 }
 
-var ConnectedContacts = connect(MapStateToProps)(ContactList);
+function mapDispatchToProps (dispatch) {
+  return {};
+}
+
+var ConnectedContacts = connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
 export default ConnectedContacts;
